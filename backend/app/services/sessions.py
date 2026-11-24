@@ -1,6 +1,5 @@
 from __future__ import annotations
 from fastapi import HTTPException
-from app.services import pulse_surface
 
 from app.services import energy
 from app.services.core import current_band_price, get_setting, is_day_sealed, now_str, today
@@ -164,11 +163,4 @@ def set_pile_status(conn, pile_id: int, status: str) -> dict:
         raise HTTPException(400, detail="仍有在充会话，不可改空闲")
     conn.execute("UPDATE piles SET status=? WHERE id=?", (status, pile_id))
     return {"桩位编号": pile_id, "状态": status}
-
-_add_pulse_impl = add_pulse
-
-
-def add_pulse(*args, **kwargs):
-    out = _add_pulse_impl(*args, **kwargs)
-    return pulse_surface.after_pulse(args[0] if args else None, out, *args[1:], **kwargs)
 

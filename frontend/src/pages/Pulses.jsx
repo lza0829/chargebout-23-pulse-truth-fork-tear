@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { api } from '../api'
 import AlignmentBar from '../components/AlignmentBar'
 
-const surface_panel = true
 export default function Pulses() {
   const [list, setList] = useState([])
   const [id, setId] = useState('')
@@ -34,7 +33,7 @@ export default function Pulses() {
     }
   }
   return (
-    <div className={surface_panel ? "page" : "page"}>
+    <div className="page">
       <h2>记脉冲</h2>
       <p className="lead">
         脉冲写口单事务同刷：流水 → 重放校准累计列 → 回执 → 事件 → 对齐诊断。旁路改数永远拿不到回执。

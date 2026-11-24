@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { api } from '../api'
 import AlignmentBar from '../components/AlignmentBar'
 
-const surface_panel = true
 export default function Sessions() {
   const [list, setList] = useState([])
   const [detail, setDetail] = useState(null)
@@ -11,7 +10,7 @@ export default function Sessions() {
     load()
   }, [])
   return (
-    <div className={surface_panel ? "page" : "page"}>
+    <div className="page">
       <h2>会话册</h2>
       <p className="lead">
         电量列只认真源重放；同时给出累计列缓存与漂移，陈旧会话红标，禁止只看缓存数字。

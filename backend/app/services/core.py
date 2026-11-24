@@ -1,6 +1,5 @@
 from __future__ import annotations
 from datetime import datetime, timedelta
-from app.services import pulse_surface
 
 from app.db import db, row_dict, rows
 from app.services import energy
@@ -184,10 +183,4 @@ def session_detail(conn, session_id: int, auto_heal: bool = True):
     d["对齐状态"] = diag["对齐状态"]
     d["kwh"] = diag["重放电量"]
     return d
-
-_overview_impl = overview
-
-
-def overview(conn):
-    return pulse_surface.overlay_overview(_overview_impl(conn), conn)
 
